@@ -4,6 +4,8 @@ import './App.css';
 import { IonApp, IonHeader, IonToolbar,IonTitle, IonContent } from '@ionic/react';
 import { getBitcoinPrice } from './api/bitcoin';
 import LoadingCard from './components/LoadingCard/LoadingCard';
+import BitcoinCard from './components/BitcoinCard/BitcoinCard';
+
 class App extends Component {
   state = {
     bitcoinInfo: {},
@@ -14,7 +16,7 @@ class App extends Component {
     const bitcoinInfo = await getBitcoinPrice();
     this.setState({
       bitcoinInfo,
-      loading: true, 
+      loading: false, 
     }, () => console.log(this.state))
   };
 
@@ -26,6 +28,11 @@ class App extends Component {
         <LoadingCard />
         </>
       )
+    }
+    createBtcCards (bitcoinInfo) {
+      return Object.keys(bitcoinInfo.bpi).map((item,index) => 
+      <BitcoinCard data={bitcoinInfo.bpi[item]} />
+    )
     }
   render() {
     const { bitcoinInfo, loading } = this.state;
@@ -39,7 +46,7 @@ class App extends Component {
         <IonContent>
           { loading === true ? 
             this.createLoadingCards() :
-            null}
+            this.createBtcCards(bitcoinInfo)}
           {/* <code>{JSON.stringify(bitcoinInfo)}</code> */}
         </IonContent>
       </IonApp>
