@@ -1,3 +1,5 @@
+import '@ionic/core/css/core.css';
+import '@ionic/core/css/ionic.bundle.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
