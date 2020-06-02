@@ -19,13 +19,17 @@ class App extends Component {
   };
 
   render() {
+    const { bitcoinInfo } = this.state;
     return (
       <IonApp>
         <IonHeader>
-          <IonToolbar>
+          <IonToolbar color="primary">
             <IonTitle>Bitcoin Price Tracker</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <IonContent>
+          <code>{JSON.stringify(bitcoinInfo)}</code>
+        </IonContent>
       </IonApp>
     );
   }
